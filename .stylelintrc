@@ -1,0 +1,25 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": [
+    "stylelint-a11y",
+    "stylelint-order"
+  ],
+  "rules": {
+    "number-leading-zero": "never",
+    "value-keyword-case": ["lower", {
+      "ignoreProperties": ["/^(b|B)ackground$/", "flex-direction"]
+    }],
+    "order/properties-order": [
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "color",
+      "text-align",
+      "text-decoration",
+      "font-size",
+      "border",
+      "border-radius"
+    ]
+  }
+}

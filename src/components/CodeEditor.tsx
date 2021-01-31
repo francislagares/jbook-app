@@ -1,21 +1,27 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import './CodeEditor.css';
 import './syntax.css';
-import MonacoEditor, {
-  EditorProps,
-  OnChange,
-  OnMount,
-} from '@monaco-editor/react';
+import MonacoEditor, { OnMount } from '@monaco-editor/react';
 import prettier from 'prettier';
 import parser from 'prettier/parser-babel';
 import codeShift from 'jscodeshift';
 import Highlighter from 'monaco-jsx-highlighter';
 import { useRef } from 'react';
 
-const CodeEditor: React.FC<EditorProps> = ({ defaultValue }) => {
+interface CodeEditorProps {
+  initialValue: string;
+  onChange(value: string): void;
+}
+
+const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
   const editorRef = useRef<any>();
+
   const onEditorDidMount: OnMount = editor => {
     editorRef.current = editor;
+    editor.onDidChangeModelContent(() => {
+      onChange(editor.getValue());
+    });
+
     editor.getModel()?.updateOptions({ tabSize: 2 });
 
     const highlighter = new Highlighter(
@@ -33,11 +39,7 @@ const CodeEditor: React.FC<EditorProps> = ({ defaultValue }) => {
     );
   };
 
-  const handleEditorChange: OnChange = (value, event) => {
-    console.log('here is the current model value:', value, event);
-  };
-
-  const prettierFormat = () => {
+  const prettierFormat = (): void => {
     // Get current value from editor
     const unformatted = editorRef.current.getModel().getValue();
     // Format the value
@@ -64,8 +66,7 @@ const CodeEditor: React.FC<EditorProps> = ({ defaultValue }) => {
       </button>
       <MonacoEditor
         onMount={onEditorDidMount}
-        onChange={handleEditorChange}
-        value={defaultValue}
+        value={initialValue}
         theme="vs-dark"
         language="javascript"
         height="500px"

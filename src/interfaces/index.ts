@@ -13,7 +13,7 @@ export interface ICellState {
   error: string | null;
   order: string[];
   data: {
-    [key: string]: CellTypes;
+    [key: string]: ICell;
   };
 }
 
@@ -27,7 +27,7 @@ export interface IMoveCellAction {
 
 export interface IDeleteCellAction {
   type: ActionType.DELETE_CELL;
-  payload: string;
+  payload: string | null;
 }
 
 export interface IInsertCellBeforeAction {

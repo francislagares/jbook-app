@@ -1,5 +1,6 @@
 import { ActionType } from '../types/Actions';
 import { CellTypes } from '../types/Cell';
+import { Direction } from '../types/Direction';
 
 export interface ICell {
   id: string;
@@ -7,11 +8,20 @@ export interface ICell {
   content: string;
 }
 
+export interface ICellState {
+  loading: boolean;
+  error: string | null;
+  order: string[];
+  data: {
+    [key: string]: CellTypes;
+  };
+}
+
 export interface IMoveCellAction {
   type: ActionType.MOVE_CELL;
   payload: {
     id: string;
-    direction: 'up' | 'down';
+    direction: Direction;
   };
 }
 

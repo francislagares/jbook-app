@@ -8,6 +8,10 @@ export interface ICell {
   content: string;
 }
 
+export interface ICellListItemProps {
+  cell: ICell;
+}
+
 export interface ICellState {
   loading: boolean;
   error: string | null;

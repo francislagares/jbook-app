@@ -20,6 +20,11 @@ export interface IActionBarProps {
   id: string;
 }
 
+export interface IAddCellProps {
+  nextCellId: string | null;
+  visible?: boolean;
+}
+
 export interface ICellListItemProps {
   cell: ICell;
 }
@@ -49,7 +54,7 @@ export interface IDeleteCellAction {
 export interface IInsertCellBeforeAction {
   type: ActionType.INSERT_CELL_BEFORE;
   payload: {
-    id: string;
+    id: string | null;
     type: CellTypes;
   };
 }

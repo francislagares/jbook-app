@@ -1,5 +1,7 @@
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import CellListItem from './CellListItem';
+import AddCell from './AddCell';
+import { Fragment } from 'react';
 
 const CellList: React.FC = () => {
   const cells = useTypedSelector(({ cells: { order, data } }) => {
@@ -9,10 +11,20 @@ const CellList: React.FC = () => {
   });
 
   const renderedCells = cells.map(cell => (
-    <CellListItem key={cell.id} cell={cell} />
+    <Fragment key={cell.id}>
+      <AddCell nextCellId={cell.id} />
+      <CellListItem key={cell.id} cell={cell} />
+    </Fragment>
   ));
 
-  return <div>{renderedCells}</div>;
+  return (
+    <div>
+      {renderedCells}
+      <div>
+        <AddCell visible={cells.length === 0} nextCellId={null} />
+      </div>
+    </div>
+  );
 };
 
 export default CellList;

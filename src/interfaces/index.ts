@@ -8,6 +8,14 @@ export interface ICell {
   content: string;
 }
 
+export interface ICodeCellProps {
+  cell: ICell;
+}
+
+export interface ITextEditorProps {
+  cell: ICell;
+}
+
 export interface ICellListItemProps {
   cell: ICell;
 }

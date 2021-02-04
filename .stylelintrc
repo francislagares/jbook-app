@@ -10,6 +10,10 @@
       "ignoreProperties": ["/^(b|B)ackground$/", "flex-direction"]
     }],
     "order/properties-order": [
+      "top",
+      "bottom",
+      "right",
+      "left",
       "width",
       "height",
       "margin",

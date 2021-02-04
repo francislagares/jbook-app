@@ -16,6 +16,10 @@ export interface ITextEditorProps {
   cell: ICell;
 }
 
+export interface IActionBarProps {
+  id: string;
+}
+
 export interface ICellListItemProps {
   cell: ICell;
 }

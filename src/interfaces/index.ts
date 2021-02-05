@@ -21,7 +21,7 @@ export interface IActionBarProps {
 }
 
 export interface IAddCellProps {
-  nextCellId: string | null;
+  previousCellId: string | null;
   visible?: boolean;
 }
 
@@ -51,8 +51,8 @@ export interface IDeleteCellAction {
   payload: string | null;
 }
 
-export interface IInsertCellBeforeAction {
-  type: ActionType.INSERT_CELL_BEFORE;
+export interface IInsertCellAfterAction {
+  type: ActionType.INSERT_CELL_AFTER;
   payload: {
     id: string | null;
     type: CellTypes;

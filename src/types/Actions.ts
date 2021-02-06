@@ -3,6 +3,7 @@ import {
   IDeleteCellAction,
   IInsertCellAfterAction,
   IUpdateCellAction,
+  IBundleCreatedAction,
 } from '../interfaces';
 
 export enum ActionType {
@@ -10,10 +11,12 @@ export enum ActionType {
   DELETE_CELL = 'delete_cell',
   INSERT_CELL_AFTER = 'insert_cell_after',
   UPDATE_CELL = 'update_cell',
+  BUNDLE_CREATED = 'bundle_created',
 }
 
 export type Action =
   | IMoveCellAction
   | IDeleteCellAction
   | IInsertCellAfterAction
-  | IUpdateCellAction;
+  | IUpdateCellAction
+  | IBundleCreatedAction;

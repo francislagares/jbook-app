@@ -38,6 +38,13 @@ export interface ICellState {
   };
 }
 
+export interface IBundleState {
+  [key: string]: {
+    code: string;
+    error: string;
+  };
+}
+
 export interface IMoveCellAction {
   type: ActionType.MOVE_CELL;
   payload: {
@@ -64,5 +71,16 @@ export interface IUpdateCellAction {
   payload: {
     id: string;
     content: string;
+  };
+}
+
+export interface IBundleCreatedAction {
+  type: ActionType.BUNDLE_CREATED;
+  payload: {
+    cellId: string;
+    bundle: {
+      code: string;
+      error: string;
+    };
   };
 }

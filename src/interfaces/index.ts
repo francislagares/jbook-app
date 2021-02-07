@@ -40,6 +40,7 @@ export interface ICellState {
 
 export interface IBundleState {
   [key: string]: {
+    loading: boolean;
     code: string;
     error: string;
   };
@@ -74,8 +75,15 @@ export interface IUpdateCellAction {
   };
 }
 
-export interface IBundleCreatedAction {
-  type: ActionType.BUNDLE_CREATED;
+export interface IBundleStartAction {
+  type: ActionType.BUNDLE_START;
+  payload: {
+    cellId: string;
+  };
+}
+
+export interface IBundleCompleteAction {
+  type: ActionType.BUNDLE_COMPLETE;
   payload: {
     cellId: string;
     bundle: {

@@ -39,11 +39,13 @@ export interface ICellState {
 }
 
 export interface IBundleState {
-  [key: string]: {
-    loading: boolean;
-    code: string;
-    error: string;
-  };
+  [key: string]:
+    | {
+        loading: boolean;
+        code: string;
+        error: string;
+      }
+    | undefined;
 }
 
 export interface IMoveCellAction {

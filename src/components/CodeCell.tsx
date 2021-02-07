@@ -4,10 +4,27 @@ import Preview from './Preview';
 import Resizable from './Resizable';
 import { useActions } from '../hooks/useActions';
 import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useEffect } from 'react';
 
 const CodeCell: React.FC<ICodeCellProps> = ({ cell }): JSX.Element => {
-  const { updateCell } = useActions();
+  const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector(state => state.bundles[cell.id]);
+
+  useEffect(() => {
+    if (!bundle) {
+      createBundle(cell.id, cell.content);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      createBundle(cell.id, cell.content);
+    }, 750);
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cell.content, cell.id, createBundle]);
 
   return (
     <Resizable direction="vertical">
@@ -25,7 +42,7 @@ const CodeCell: React.FC<ICodeCellProps> = ({ cell }): JSX.Element => {
           />
         </Resizable>
 
-        <Preview code={bundle.code} error={bundle.error} />
+        {bundle && <Preview code={bundle.code} error={bundle.error} />}
       </div>
     </Resizable>
   );
